@@ -1,15 +1,12 @@
 import os
 import requests
 import streamlit as st
-from dotenv import load_dotenv
 
-# Carrega variáveis de ambiente
-load_dotenv()
-
+# Variáveis de ambiente do Streamlit Secrets
 REALM = os.getenv("REALM")
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_KEY = os.getenv("CLIENT_KEY")
-AGENT_ID = "01K6101856EC0MKJ8KN4S2B9CM"  # fixo do seu exemplo
+AGENT_ID = os.getenv("AGENT_ID")
 
 # Função para autenticação
 def get_jwt():
@@ -41,7 +38,6 @@ def ask_agent(prompt):
 
 # Interface Streamlit
 st.set_page_config(page_title="Gerador de Plano de Negócios", page_icon="📊", layout="centered")
-
 st.title("📊 Gerador de Mini Plano de Negócios")
 st.write("Digite sua ideia de negócio abaixo e receba um mini plano automaticamente.")
 
@@ -53,11 +49,10 @@ if st.button("Gerar Plano"):
             try:
                 result = ask_agent(prompt)
                 st.subheader("📑 Resultado")
-                # Exibe texto formatado se possível
                 if "text" in result:
                     st.write(result["text"])
                 else:
-                    st.json(result)  # fallback se a resposta vier em JSON diferente
+                    st.json(result)
             except Exception as e:
                 st.error(f"Erro ao gerar plano: {e}")
     else:
