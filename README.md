@@ -27,6 +27,3 @@ Este projeto é um **agente gerador de mini plano de negócios** integrado com u
 
 ---
 
-## ⚠️ Observações
-
-- As variáveis de ambiente (REALM, CLIENT_ID, CLIENT_KEY, AGENT_ID) são configuradas via **Streamlit Secrets**, garantindo que suas chaves permaneçam privadas.
